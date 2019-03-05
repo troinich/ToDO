@@ -5,7 +5,7 @@
             <p>hjälp när det inte fastnar</p>
         </header>
         <section class="content">
-       <todo v-for="(todoData, index) in vv" :key="index" :todo="todoData" :index="index">
+       <todo v-for="(todoData, index) in todos" :key="index" :todo="todoData" :index="index">
        </todo>
         </section>
         <footer>
@@ -17,15 +17,22 @@
 import todo from '../components/Todo'
 export default {
     name: 'todos',
-    props:['vv'],
     methods:{
-        swipe(e){
-            this.$emit('swipe', 1);
+        swipe(){
+            this.$store.commit('swipe', 1);
         }
     },
     components:{
         todo
+    },
+    computed:{
+    todos(){
+       /*  let todos = this.$store.getters.todos
+        return todos.filter(todo=> todo.done == true) */
+        return this.$store.getters.todos;
+
     }
+}
 }
 </script>
 <style lang="scss">

@@ -3,10 +3,10 @@
         <header>
         </header>
         <section class="content">
-            <input type="text" v-model="newTodo">
+            <input type="text" v-model="todoText">
         </section>
         <footer>
-            <p>{{newTodo.length}} / 30 tecken</p>
+            <p>{{todoText.length}} / 30 tecken</p>
             <a href="#" class="btn" @click="addTodo">Add new Todo</a>
         </footer>
     </main>
@@ -16,19 +16,19 @@ export default {
     name: 'newTodo',
     data(){
         return{
-            newTodo:""
-        }
-    },
+            todoText:''
+    }
+},
 
-methods:{
-    addTodo(){
-        let todo={
-            done:false,
-            text:this.newTodo  
-        }
-        this.$emit('newtodo', todo);
-        this.newTodo='';
-        this.$emit('swipe', 0)
+    methods:{
+        swipe(){
+            this.$store.commit('swipe', 0);
+    },
+        addTodo(){
+    //hamta input
+    //dispatcha nya todo  till vuex
+    this.$store.dispatch('addTodo', {text: this.todoText, done:false})
+    this.todoText = ''
     }
 }
 }

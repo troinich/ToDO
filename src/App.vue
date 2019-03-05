@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <section class="slider" :class="'slide-'+ activeSlide">
-      <todos :vv="todos" @swipe="handleSwipe"/>
+      <todos />
    
-      <newtodo @swipe="handleSwipe" @newtodo="newTodo"/>
+      <newtodo />
     </section>
   </div>
 </template>
@@ -14,27 +14,15 @@ import newtodo from "./views/NewTodo.vue";
 
 export default {
   name: "app",
-  data(){
-    return{
-      todos:[
-        {done:false, text:'Kop bananer'},
-        {done:false, text:'Ketchup'},
-        {done:true, text:'Applen'}
-      ],
-      activeSlide:0
-    }
-  },
+ 
   components: {
     todos,
     newtodo
   },
-  methods:{
-    handleSwipe(e){
-      console.log('swipe');
-      this.activeSlide = e;
-    },
-    newTodo(todo){
-      this.todos.push(todo);
+ 
+  computed:{
+    activeSlide(){
+      return this.$store.state.activeSlide;
     }
   }
 };
