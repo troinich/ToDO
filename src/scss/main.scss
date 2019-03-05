@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+//
+%center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+
+    #app{
+        font-family: 'Noto Sans', sans-serif;
+        height: inherit;
+        overflow: hidden;
+    }
+
+    .slider{
+    width: 200vw;
+    display:flex;
+    height: inherit;
+    transition: transform .2s ease;
+
+    &.slide-0{
+        transform: translate3d(0,0,0)
+    }
+
+    &.slide-1{
+        transform: translate3d(-100vw,0,0)
+    }
+}
+}
